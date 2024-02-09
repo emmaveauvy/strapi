@@ -19,9 +19,6 @@ export default async function PinsList() {
            <Image src={`http://127.0.0.1:1337${pin.attributes.media.data[0].attributes.url}`}  width={pin.attributes.media.data[0].attributes.formats.medium.width}
             height={pin.attributes.media.data[0].attributes.formats.medium.height}/>
            
-           
-           
-      
         </div>
   ))}
   </>

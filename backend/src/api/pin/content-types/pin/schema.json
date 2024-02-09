@@ -29,12 +29,6 @@
         "videos"
       ]
     },
-    "openningHours": {
-      "displayName": "Openning Hours",
-      "type": "component",
-      "repeatable": false,
-      "component": "restaurantinfo.openning-hours"
-    },
     "categories": {
       "type": "relation",
       "relation": "manyToMany",

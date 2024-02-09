@@ -728,7 +728,6 @@ export interface ApiPinPin extends Schema.CollectionType {
     title: Attribute.String & Attribute.Required;
     body: Attribute.RichText & Attribute.Required;
     media: Attribute.Media & Attribute.Required;
-    openningHours: Attribute.Component<'restaurantinfo.openning-hours'>;
     categories: Attribute.Relation<
       'api::pin.pin',
       'manyToMany',
