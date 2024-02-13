@@ -80,6 +80,8 @@ import { getCategories } from "./components/Categories.js";
 import PinsList from './views/listPins.js';
 import CategoryList from './views/CategoryList';
 import {getPins} from './components/Pins.js';
+import { CreatePin } from './views/createForm.js';
+ 
 export default function Home() {
   const [pins, setPins] = useState([]);
 
@@ -98,6 +100,9 @@ export default function Home() {
 
   return (
     <main>
+              <CreatePin/>
+
+
       <PinsList pins={pins} />
     </main>
   );
