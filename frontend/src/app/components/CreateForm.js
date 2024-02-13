@@ -134,6 +134,8 @@ export function CreatePostForm() {
   );
 };
 */
+
+/*
 import React, { useState } from 'react';
 import axios from 'axios';
 
@@ -177,6 +179,85 @@ export function CreatePostForm() {
       <div>
         <label htmlFor="body">Contenu:</label>
         <textarea id="body" name="body" value={body} onChange={(e) => setBody(e.target.value)} required></textarea>
+      </div>
+      <button type="submit" disabled={isLoading}>
+        {isLoading ? 'En cours...' : 'Créer le post'}
+      </button>
+      {error && <p>{error}</p>}
+      {successMessage && <p>{successMessage}</p>}
+    </form>
+  );
+};
+*/import React, { useState } from 'react';
+import axios from 'axios';
+
+export function CreatePostForm() {
+  const [title, setTitle] = useState('');
+  const [body, setBody] = useState('');
+  const [image, setImage] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [successMessage, setSuccessMessage] = useState(null);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    try {
+      
+      const formData = {
+        data: {
+          title: title,
+          body: body
+        }
+      };
+      
+      const formDataImg = new FormData();
+      if (image) {
+        formDataImg.append('files', image);
+      }
+
+      // Envoi de la requête POST pour créer le post avec les données textuelles
+      const response = await axios.post('http://localhost:1337/api/pins', formData);
+
+      let res; // Déclaration de res à ce niveau
+
+      // Envoi de la requête POST pour télécharger l'image
+      if (image) {
+        res = await axios.post('http://localhost:1337/api/upload', formDataImg, {
+          headers: {
+            'Content-Type': 'multipart/form-data' // Indique que le contenu est de type FormData
+          }
+        });
+      }
+
+      console.log("Post created successfully:", response.data);
+      if (res) { // Vérifie si res est défini avant de l'utiliser
+        
+        console.log("Image uploaded successfully:", res.data);
+      }
+      setSuccessMessage('Post créé avec succès !');
+    } catch (error) {
+      console.error("Error creating post: ", error);
+      setError('Une erreur s\'est produite lors de la création du post. Veuillez réessayer.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <div>
+        <label htmlFor="title">Titre:</label>
+        <input type="text" id="title" name="title" value={title} onChange={(e) => setTitle(e.target.value)} required />
+      </div>
+      <div>
+        <label htmlFor="body">Contenu:</label>
+        <textarea id="body" name="body" value={body} onChange={(e) => setBody(e.target.value)} required></textarea>
+      </div>
+      <div>
+        <label htmlFor="image">Image:</label>
+        <input type="file" id="image" name="image" accept="image/*" onChange={(e) => setImage(e.target.files[0])} />
       </div>
       <button type="submit" disabled={isLoading}>
         {isLoading ? 'En cours...' : 'Créer le post'}
