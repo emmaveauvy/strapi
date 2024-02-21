@@ -35,11 +35,13 @@ export default function CategoriesList({ categories, onSelectCategory }) {
   return (
     <>
       <h1>Catégories</h1>
-      {categories.map(category => (
-        <div key={category.id} className="card my-5">
-          <h3 onClick={() => onSelectCategory(category.id)}>{category.attributes.name}</h3>
-        </div>
-      ))}
+      <div className="categories">
+
+      
+        {categories.map(category => (
+            <h3 key={category.id}  className="category" onClick={() => onSelectCategory(category.id)}>{category.attributes.name}</h3>
+        ))}
+      </div>
     </>
   );
 }

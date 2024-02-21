@@ -22,4 +22,136 @@ a {
 
 .pinCategory{
   font-style: italic;
+  list-style: none;
+}
+
+/* Style général */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Bouton violet */
+.btn-purple {
+  background-color: #6a0dad;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Formulaires */
+form {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+form label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+form input[type="text"],
+form input[type="password"],
+form input[type="email"],
+form textarea,
+form select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+form button[type="submit"] {
+  background-color: #6a0dad;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+/* Titre "Catégories" */
+h1 {
+  color: #6a0dad;
+}
+
+/* Catégories */
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.categories .category {
+  border: 2px solid #6a0dad;
+  border-radius: 5px;
+  padding: 10px;
+  display: inline-block;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+.categories .category.selected {
+  background-color: #dabfff; /* Violet clair */
+}
+
+.categories .category.active {
+  background-color: #6a0dad; /* Violet foncé */
+  color: #fff;
+}
+
+/* Liste de pins */
+.pins {
+  column-count: 3; /* Nombre de colonnes */
+  column-gap: 20px; /* Espace entre les colonnes */
+}
+
+.pin {
+  display: inline-block;
+  width: 100%; /* Prend toute la largeur d'une colonne */
+  break-inside: avoid; /* Empêche la coupure des épingles entre les colonnes */
+  background-color: transparent; /* Retirer l'arrière-plan blanc */
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px; /* Espacement entre les épingles */
+}
+
+.pin h3 {
+  color: #6a0dad;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.pin img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.pin .categories {
+  margin-top: 10px;
+  padding: 0; /* Retirer le padding de la liste */
+  list-style: none; /* Retirer les puces */
+}
+
+.pin .categories li {
+  background-color: #dabfff;
+  border: 1px solid #6a0dad;
+  border-radius: 5px;
+  padding: 5px 10px;
+  display: inline-block;
+  margin-right: 5px;
 }

@@ -259,7 +259,7 @@ export function CreatePostForm() {
         <label htmlFor="image">Image:</label>
         <input type="file" id="image" name="image" accept="image/*" onChange={(e) => setImage(e.target.files[0])} />
       </div>
-      <button type="submit" disabled={isLoading}>
+      <button className="btn-purple" type="submit" disabled={isLoading}>
         {isLoading ? 'En cours...' : 'Créer le post'}
       </button>
       {error && <p>{error}</p>}

@@ -331,15 +331,15 @@ useEffect(() => {
   return (
     <div>
       <CategoryList onSelectCategory={handleSelectCategory} />
-      <button onClick={() => setSelectedCategory(null)}>Supprimer les filtres</button>
+      <button className="btn-purple" onClick={() => setSelectedCategory(null)}>Supprimer les filtres</button>
       <h1>Pins List</h1>
 
-      <ul>
+      <ul className="pins">
         {filteredPins.map(pin => (
-          <li key={pin.id}>
+          <li key={pin.id} className='pin'>
             <h3>{pin.attributes.title}</h3>
             {pin.images && pin.images.map(imageUrl => (
-            <img key={imageUrl} src={imageUrl} alt={pin.attributes.title} width="100px" height="100px"/>
+            <img key={imageUrl} src={imageUrl} alt={pin.attributes.title} />
           ))}
             <ul>
               {pin.attributes.categories.data.map(category => (
