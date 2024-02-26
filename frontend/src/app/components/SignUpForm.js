@@ -78,7 +78,11 @@ const SignUpForm = ({ onAuthError }) => {
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
         </div>
+        <div className="ctn-btn">
+
+       
         <button className="btn-purple" type="submit">Créer un compte</button>
+        </div>
       </form>
     </div>
   );

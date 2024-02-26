@@ -223,12 +223,7 @@ export default function PinsList() {
 =>data=> id=>attributes=>media=>data=>0=>attributes=>url
 
 */
-import React, { useState, useEffect } from 'react';
-import { getPins, getPinsImg } from "../components/Pins";
-import CategoryList from './CategoryList';
-export default function PinsList() {
-  const [pins, setPins] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState(null);
+
 /*
   useEffect(() => {
     const fetchData = async () => {
@@ -269,6 +264,17 @@ export default function PinsList() {
   }, []);
 */
 
+import React, { useState, useEffect } from 'react';
+import { getPins, getPinsImg } from "../components/Pins";
+import CategoryList from './CategoryList';
+import PinPopup from './PinPopUp';
+
+
+export default function PinsList() {
+  const [pins, setPins] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedPin, setSelectedPin] = useState(null);
+
 useEffect(() => {
   const fetchPins = async () => {
     try {
@@ -296,8 +302,6 @@ useEffect(() => {
               }
             });
   
-            
-            
             // Retournez le pin avec les URLs des images ajoutées
             return {
               ...pin,
@@ -326,29 +330,48 @@ useEffect(() => {
     setSelectedCategory(categoryId);
   };
 
+  const handlePinClick = (pin) => {
+    setSelectedPin(pin);
+  };
+
+  const handleClosePopup = () => {
+    setSelectedPin(null);
+  };
+
   const filteredPins = selectedCategory ? pins.filter(pin => pin.attributes.categories.data.some(category => category.id === selectedCategory)) : pins;
 
   return (
     <div>
       <CategoryList onSelectCategory={handleSelectCategory} />
+    <div className='ctn-btn'>
       <button className="btn-purple" onClick={() => setSelectedCategory(null)}>Supprimer les filtres</button>
+      </div>
+
+      <div className="ctn-pin">
       <h1>Pins List</h1>
 
       <ul className="pins">
-        {filteredPins.map(pin => (
-          <li key={pin.id} className='pin'>
-            <h3>{pin.attributes.title}</h3>
-            {pin.images && pin.images.map(imageUrl => (
-            <img key={imageUrl} src={imageUrl} alt={pin.attributes.title} />
-          ))}
-            <ul>
-              {pin.attributes.categories.data.map(category => (
-                <li className="pinCategory" key={category.id}>{category.attributes.name}</li>
-              ))}
-            </ul>
-          </li>
+  {filteredPins.length > 0 ? (
+    filteredPins.map((pin) => (
+      <li key={pin.id} className='pin' onClick={() => handlePinClick(pin)}>
+        <h3>{pin.attributes.title}</h3>
+        {pin.images && pin.images.map((imageUrl) => (
+          <img key={imageUrl} src={imageUrl} alt={pin.attributes.title} />
         ))}
-      </ul>
+        <ul>
+          {pin.attributes.categories.data.map((category) => (
+            <li className="pinCategory" key={category.id}>{category.attributes.name}</li>
+          ))}
+        </ul>
+      </li>
+    ))
+  ) : (
+    <p className='no-pin'>Aucun pin ne correspond à la catégorie sélectionnée.</p>
+  )}
+
+</ul>
+{selectedPin && <PinPopup pin={selectedPin} onClose={handleClosePopup} />}
+</div>
     </div>
   );
 }

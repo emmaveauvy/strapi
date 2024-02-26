@@ -29,6 +29,8 @@ export default function CategoriesList({ categories, onSelectCategory }) {
     </>
   );
 }*/
+
+/*
 import { getCategories } from "../components/Categories.js";
 
 export default function CategoriesList({ categories, onSelectCategory }) {
@@ -44,4 +46,4 @@ export default function CategoriesList({ categories, onSelectCategory }) {
       </div>
     </>
   );
-}
+}*/

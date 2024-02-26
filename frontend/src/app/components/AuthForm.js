@@ -127,7 +127,7 @@ const AuthForm = () => {
   };
 
   return (
-    <div>
+    <div className="sign-in">
       <h2>Connexion</h2>
       {error && <p>{error}</p>}
       <form onSubmit={handleSubmit}>
@@ -147,7 +147,9 @@ const AuthForm = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
+        <div className="ctn-btn">
         <button className="btn-purple" type="submit">Se connecter</button>
+        </div>
       </form>
     </div>
   );

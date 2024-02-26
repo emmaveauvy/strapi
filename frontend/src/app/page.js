@@ -128,11 +128,10 @@ import React, { useState, useEffect } from 'react';
 import { getPins } from './components/Pins.js';
 import PinsList from './views/listPins.js';
 import { CreatePin } from './views/createForm.js';
-import AuthForm from './components/AuthForm';
-import SignUpForm from './components/SignUpForm';
+//import AuthForm from './components/AuthForm';
+//import SignUpForm from './components/SignUpForm';
 import AuthProvider from './components/AuthProvider.js';
-
-
+import FormAccount from './views/Form.js';
 
 
 export default function Home() {
@@ -162,7 +161,7 @@ export default function Home() {
 
     fetchPins();
   }, []);
-
+/*
   // Fonction pour gérer la connexion de l'utilisateur
   const handleLogin = (userData) => {
     // Logique de connexion ici
@@ -186,27 +185,29 @@ export default function Home() {
     // Mettez à jour l'état errorMessage avec le message d'erreur approprié
     setErrorMessage(error);
   };
-
+*/
   return (
     <main>
-      <div>
-        {/* Affichage du formulaire de connexion ou du message d'authentification */}
+      <div className='form-container'>
+        {/* Affichage du formulaire de connexion ou du message d'authentification 
         {!isAuthenticated ? (
           <AuthForm onLogin={handleLogin} onAuthError={handleAuthError} />
         ) : (
           <p>User is authenticated!</p>
         )}
-        
-        {/* Affichage du formulaire de création de compte */}
+        */}
+        {/* Affichage du formulaire de création de compte
         {!isAuthenticated && (
           <SignUpForm onSignUp={handleSignUp} onAuthError={handleAuthError} />
         )}
-
-        {/* Affichage du message d'erreur s'il y a eu un problème d'authentification */}
+ */}
+        {/* Affichage du message d'erreur s'il y a eu un problème d'authentification 
         {errorMessage && <p>{errorMessage}</p>}
         
-       
+       */}
       </div>
+
+      <FormAccount/>
       <CreatePin />
       <PinsList pins={pins} />
     </main>

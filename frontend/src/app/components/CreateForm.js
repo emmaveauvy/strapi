@@ -202,48 +202,112 @@ export function CreatePostForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-
+  
     try {
-      
+          const formDataImg = new FormData();
+          formDataImg.append('files', image);
+          const uploadImageResponse = await axios.post('http://localhost:1337/api/upload', formDataImg, {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          });
+  
+         
+  
+            // Récupérez l'URL de l'image téléchargée
+            const imageUrl = uploadImageResponse.data[0].url;
+            console.log("imagUrl",imageUrl);
+      // Créez le post avec les données textuelles
       const formData = {
         data: {
           title: title,
-          body: body
+          body: body,
+          media: {
+            data: [
+              {
+                attributes: {
+                  url: "/uploads/IMG_9840_52751f47c1.jpeg"
+                }
+              }
+            ]
+          }
         }
       };
       
-      const formDataImg = new FormData();
-      if (image) {
-        formDataImg.append('files', image);
-      }
-
-      // Envoi de la requête POST pour créer le post avec les données textuelles
       const response = await axios.post('http://localhost:1337/api/pins', formData);
+      console.log(response);
+  
+      /*
+      // Vérifiez si la création du post a réussi
+      if (response.status === 200 || response.status === 201) {
+        console.log("Post created successfully:", response.data);
+  
+        // Si une image est sélectionnée, téléchargez-la et associez-la au post
+        if (image) {
+          // Téléchargez l'image
+          const formDataImg = new FormData();
+          formDataImg.append('files', image);
+          const uploadImageResponse = await axios.post('http://localhost:1337/api/upload', formDataImg, {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          });
+  
+          // Vérifiez si le téléchargement de l'image a réussi
+          if (uploadImageResponse.status === 200 || uploadImageResponse.status === 201) {
+            console.log("Image uploaded successfully:", uploadImageResponse.data);
+  
+            // Récupérez l'URL de l'image téléchargée
+            const imageUrl = uploadImageResponse.data[0].url;
+            // Vérifiez si les données de média sont null
 
-      let res; // Déclaration de res à ce niveau
 
-      // Envoi de la requête POST pour télécharger l'image
-      if (image) {
-        res = await axios.post('http://localhost:1337/api/upload', formDataImg, {
-          headers: {
-            'Content-Type': 'multipart/form-data' // Indique que le contenu est de type FormData
+// Envoyez la requête PUT pour mettre à jour le média
+
+
+  
+            // Associez l'URL de l'image au post en utilisant une requête PUT
+            const newData = {
+              media: {
+                data: [
+                  {
+                    attributes: {
+                      url: imageUrl
+                    }
+                  }
+                ]
+              }
+            };
+
+            //renvoie null, du coup j'arrive pas à modifier l'url car elle existe pas.
+            console.log(response.data.data.attributes.media.data);
+
+            if (response.data.data.attributes.media.data === null) {
+              // Utilisez l'image par défaut
+              const defaultImageUrl = "http://localhost:1337/uploads/IMG_9840_52751f47c1.jpeg";
+              newData.media.data[0].attributes.url = defaultImageUrl;
+            }
+            
+            //ça c'est ok, je recupère bien l'id du pin
+            //console.log(`http://localhost:1337/api/pins/${response.data.data.id}`);
+            const updatePostResponse = await axios.put(`http://localhost:1337/api/pins/${response.data.data.id}?populate=*`, newData);
+            console.log("Post updated with image URL:", updatePostResponse.data);
           }
-        });
-      }
-
-      console.log("Post created successfully:", response.data);
-      if (res) { // Vérifie si res est défini avant de l'utiliser
-        
-        console.log("Image uploaded successfully:", res.data);
-      }
-      setSuccessMessage('Post créé avec succès !');
+        }
+  
+        setSuccessMessage('Post créé avec succès !');
+      }*/
     } catch (error) {
       console.error("Error creating post: ", error);
       setError('Une erreur s\'est produite lors de la création du post. Veuillez réessayer.');
     } finally {
       setIsLoading(false);
     }
+      
   };
+  
+
+
 
   return (
     <form onSubmit={handleSubmit}>
@@ -259,9 +323,11 @@ export function CreatePostForm() {
         <label htmlFor="image">Image:</label>
         <input type="file" id="image" name="image" accept="image/*" onChange={(e) => setImage(e.target.files[0])} />
       </div>
+      <div className="ctn-btn">
       <button className="btn-purple" type="submit" disabled={isLoading}>
         {isLoading ? 'En cours...' : 'Créer le post'}
       </button>
+      </div>
       {error && <p>{error}</p>}
       {successMessage && <p>{successMessage}</p>}
     </form>

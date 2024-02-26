@@ -62,7 +62,7 @@ export default function CategoryList({ onSelectCategory }) {
       <div className="categories">
       {categories && categories.map(category => (
         <div key={category.id} className="card my-5 category" onClick={() => onSelectCategory(category.id)}>
-          <h3>{category.attributes.name}</h3>
+          <h5>{category.attributes.name}</h5>
         </div>
       ))}
       </div>
