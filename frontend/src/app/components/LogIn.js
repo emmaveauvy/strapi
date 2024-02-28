@@ -6,30 +6,33 @@ export function LoginForm({ onLogin, onAuthError }) {
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
+
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
 
     try {
-      // Envoi de la requête GET pour vérifier les informations d'identification
-      const response = await axios.get(`http://localhost:1337/api/accounts?username=${username}&password=${password}`);
-
-      // Vérifiez si la réponse contient des données d'utilisateur valides
-      if (response.data.length > 0) {
-        // Utilisateur authentifié
-        onLogin(response.data[0]);
+      // Recherche de l'utilisateur dans la base de données Strapi par son nom d'utilisateur (ou e-mail)
+      const response = await axios.get(`http://localhost:1337/api/accounts?username=${username}`);
+      const user = response.data[0];
+     console.log(response);
+  
+      // Vérification si l'utilisateur existe et si le mot de passe est correct
+      if (user && user.password === password) {
+        // Authentification réussie
+        console.log("c'est bon");
+        return { success: true, user };
       } else {
-        // Aucun utilisateur correspondant trouvé
-        onAuthError("Identifiants invalides. Veuillez réessayer.");
+        // Identifiants incorrects
+        console.log("c'est pas bon");
+        return { success: false, message: "Identifiants invalides" };
       }
-
     } catch (error) {
-      // En cas d'erreur, gestion de l'erreur d'authentification
-      console.error("Error logging in: ", error);
-      onAuthError("Une erreur s'est produite lors de la connexion. Veuillez réessayer.");
-    } finally {
-      setIsLoading(false);
+      console.error("Error authenticating user:", error);
+      return { success: false, message: "Une erreur s'est produite lors de l'authentification. Veuillez réessayer." };
     }
+   
   };
 
   return (
@@ -42,8 +45,9 @@ export function LoginForm({ onLogin, onAuthError }) {
         <label htmlFor="password">Password:</label>
         <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
       </div>
-      <button type="submit" disabled={isLoading}>
-        {isLoading ? 'En cours...' : 'Se connecter'}
+      <button type="submit" >
+        Se connecter
+        {/*isLoading ? 'En cours...' : 'Se connecter'*/}
       </button>
     </form>
   );

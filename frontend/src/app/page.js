@@ -122,7 +122,9 @@ export default function Home() {
     </main>
   );
 }*/
+/*
 
+VERSION QUI FONCTIONNE SANS AUTHENTIFICATION
 "use client"
 import React, { useState, useEffect } from 'react';
 import { getPins } from './components/Pins.js';
@@ -185,7 +187,7 @@ export default function Home() {
     // Mettez à jour l'état errorMessage avec le message d'erreur approprié
     setErrorMessage(error);
   };
-*/
+*//*
   return (
     <main>
       <div className='form-container'>
@@ -195,16 +197,16 @@ export default function Home() {
         ) : (
           <p>User is authenticated!</p>
         )}
-        */}
-        {/* Affichage du formulaire de création de compte
+        }
+        {/ Affichage du formulaire de création de compte
         {!isAuthenticated && (
           <SignUpForm onSignUp={handleSignUp} onAuthError={handleAuthError} />
         )}
- */}
-        {/* Affichage du message d'erreur s'il y a eu un problème d'authentification 
+ }
+        {Affichage du message d'erreur s'il y a eu un problème d'authentification 
         {errorMessage && <p>{errorMessage}</p>}
         
-       */}
+       }
       </div>
 
       <FormAccount/>
@@ -212,4 +214,109 @@ export default function Home() {
       <PinsList pins={pins} />
     </main>
   );
-}
+}*/
+/*
+"use client"
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./globals.css";
+import AuthProvider from "./components/AuthProvider/Authprovider";
+import AppHeader from "./components/AppHeader/AppHeader"
+import { BrowserRouter as Router } from "react-router-dom";
+
+export default function Home() {
+  return(
+  <React.StrictMode>
+    <AuthProvider>
+      <Router>
+        <AppHeader />
+      </Router>
+    </AuthProvider>
+  </React.StrictMode>
+
+  )
+}*/
+/*
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  
+);*/
+
+"use client"
+import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
+import { Col, Layout, Row } from "antd";
+import AppHeader from "./components/Appheader/Appheader";
+import AppRoutes from "./Routes";
+import { getPins } from './components/Pins.js';
+import PinsList from './views/listPins.js';
+import { CreatePin } from './views/createForm.js';
+import FormAccount from './views/Form.js';
+import React, { useState, useEffect } from 'react';
+import SignUp from './pages/SignUp/SignUp';
+import SignIn from './pages/SignIn/SignIn';
+const { Header, Content } = Layout;
+
+export default function App() {
+  const [pins, setPins] = useState([]);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  function loadCSS(filename) {
+    var file = document.createElement('link');
+    file.setAttribute('rel', 'stylesheet');
+    file.setAttribute('type', 'text/css');
+    file.setAttribute('href', filename);
+    document.head.appendChild(file);
+  }
+  
+  loadCSS('globals.css');
+  
+  useEffect(() => {
+    const fetchPins = async () => {
+      try {
+        const allPins = await getPins();
+        setPins(allPins.data);
+      } catch (error) {
+        console.error('Error fetching pins:', error);
+      }
+    };
+
+    fetchPins();
+  }, []);
+
+
+  return (
+
+
+    <BrowserRouter> {/* Ajoutez le BrowserRouter ici */}
+      <Layout>
+
+        <SignUp/>
+        <SignIn/>
+        <Row gutter={[0, 32]}>
+          <Col span={24}>
+            <Header>
+              <AppHeader />
+            </Header>
+          </Col>
+          <Col span={22} offset={1}>
+            <Content>
+              <AppRoutes />
+            </Content>
+          </Col>
+        </Row>
+        <FormAccount/>
+      <CreatePin />
+      <PinsList pins={pins} />
+      </Layout>
+
+    </BrowserRouter> /* Fermez le BrowserRouter ici */
+
+    
+  );
+};
+
+// Assurez-vous que cette partie correspond à la façon dont vous intégrez votre application
+// Si `page.js` est le fichier d'entrée, cela implique que vous avez quelque chose comme ceci:
+//ReactDOM.render(<App />, document.getElementById('root'));

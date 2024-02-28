@@ -1,8 +1,8 @@
     import React, { useState } from "react";
     import { AuthContext } from "./AuthContext";
     //import { message } from "antd";
-    import { getToken } from "./helpers";
-    import { API, BEARER } from "./constant";
+    import { getToken } from "../helpers";
+    import { API, BEARER } from "../constant";
     import { useEffect } from "react";
     
     const AuthProvider = ({ children }) => {

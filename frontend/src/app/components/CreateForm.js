@@ -220,21 +220,23 @@ export function CreatePostForm() {
       // Créez le post avec les données textuelles
       const formData = {
         data: {
-          title: title,
-          body: body,
-          media: {
-            data: [
-              {
-                attributes: {
-                  url: "/uploads/IMG_9840_52751f47c1.jpeg"
+          
+            title: title,
+            body: body,
+            media: {
+              data: [
+                {
+                  attributes: {
+                    url: "/uploads/thumbnail_Numeriser_73b3042b8c.jpeg"
+                  }
                 }
-              }
-            ]
-          }
+              ]
+            }
+          
         }
       };
       
-      const response = await axios.post('http://localhost:1337/api/pins', formData);
+      const response = await axios.post('http://localhost:1337/api/pins?populate=*', formData);
       console.log(response);
   
       /*

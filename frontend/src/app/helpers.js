@@ -1,5 +1,4 @@
 
-    
 import { AUTH_TOKEN } from "./constant";
 
 export const getToken = () => {
