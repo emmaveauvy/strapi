@@ -1,5 +1,5 @@
     
-import React from "react";
+/*import React from "react";
 import { Col, Layout, Row } from "antd";
 import AppHeader from "./components/Appheader/Appheader";
 import AppRoutes from "./Routes";
@@ -24,4 +24,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default App;*/

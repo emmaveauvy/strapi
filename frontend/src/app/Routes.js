@@ -1,4 +1,4 @@
-    
+ /*   
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 //import Profile from "./components/Profile/Profile";
@@ -18,4 +18,4 @@ const AppRoutes = () => {
   );
 };
 
-export default AppRoutes;
+export default AppRoutes;*/

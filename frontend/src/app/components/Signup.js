@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+/*import React, { useState } from 'react';
 import axios from 'axios';
 
 export function CreateAccount() {
@@ -32,7 +32,7 @@ export function CreateAccount() {
 
       console.log("Post created successfully:", response.data);
       setSuccessMessage('Compte créé avec succès !');
-      
+
     } catch (error) {
       console.error("Error creating account: ", error);
       setError('Une erreur s\'est produite lors de la création du compte. Veuillez réessayer.');
@@ -64,4 +64,4 @@ export function CreateAccount() {
       {successMessage && <p>{successMessage}</p>}
     </form>
   );
-};
+};*/

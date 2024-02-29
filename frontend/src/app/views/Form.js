@@ -1,5 +1,5 @@
 
-"use client"
+/*"use client"
 import { CreateAccount } from "../components/Signup.js";
 import {LoginForm} from "../components/LogIn.js"
 import React, { useState, useEffect } from 'react';
@@ -14,4 +14,4 @@ export default function FormAccount() {
         <LoginForm/>
     </main>
   )
-}
+}*/

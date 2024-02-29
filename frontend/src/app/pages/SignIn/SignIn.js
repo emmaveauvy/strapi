@@ -54,13 +54,13 @@ const SignIn = () => {
         // set the user
         setUser(data.user);
 
-        message.success(`Welcome back ${data.user.username}!`);
+        message.success(`Bonjour ${data.user.username}!`);
 
-        navigate("/profile", { replace: true });
+        
       }
     } catch (error) {
       console.error(error);
-      setError(error?.message ?? "Something went wrong!");
+      setError(error?.message ?? "Oups il y a eu un soucis!");
     } finally {
       setIsLoading(false);
     }
@@ -118,7 +118,7 @@ const SignIn = () => {
               </Form.Item>
             </Form>
             <Typography.Paragraph className="form_help_text">
-              New to Social Cards? <Link to="/signup">Sign Up</Link>
+              New to here? <Link to="/signup">Sign Up</Link>
             </Typography.Paragraph>
           </Card>
         </Col>

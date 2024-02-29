@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+/*import React, { useState } from 'react';
 import axios from 'axios';
 
 export function LoginForm({ onLogin, onAuthError }) {
@@ -47,8 +47,9 @@ export function LoginForm({ onLogin, onAuthError }) {
       </div>
       <button type="submit" >
         Se connecter
-        {/*isLoading ? 'En cours...' : 'Se connecter'*/}
+        {/*isLoading ? 'En cours...' : 'Se connecter'*//*}
       </button>
     </form>
   );
 }
+*/

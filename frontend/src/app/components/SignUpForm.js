@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+/*import React, { useState } from "react";
 
 const SignUpForm = ({ onAuthError }) => {
   const [username, setUsername] = useState("");
@@ -89,3 +89,4 @@ const SignUpForm = ({ onAuthError }) => {
 };
 
 export default SignUpForm;
+*/

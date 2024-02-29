@@ -289,34 +289,17 @@ export default function App() {
   return (
 
 
-    <BrowserRouter> {/* Ajoutez le BrowserRouter ici */}
+    <BrowserRouter> 
       <Layout>
 
         <SignUp/>
         <SignIn/>
-        <Row gutter={[0, 32]}>
-          <Col span={24}>
-            <Header>
-              <AppHeader />
-            </Header>
-          </Col>
-          <Col span={22} offset={1}>
-            <Content>
-              <AppRoutes />
-            </Content>
-          </Col>
-        </Row>
-        <FormAccount/>
+        
       <CreatePin />
       <PinsList pins={pins} />
       </Layout>
 
-    </BrowserRouter> /* Fermez le BrowserRouter ici */
-
+    </BrowserRouter> 
     
   );
 };
-
-// Assurez-vous que cette partie correspond à la façon dont vous intégrez votre application
-// Si `page.js` est le fichier d'entrée, cela implique que vous avez quelque chose comme ceci:
-//ReactDOM.render(<App />, document.getElementById('root'));
