@@ -21,7 +21,7 @@ import { setToken } from "../../helpers";
 
 const SignUp = () => {
   //const { isDesktopView } = useScreenSize();
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
 
   const { setUser } = useAuthContext();
 
@@ -50,9 +50,9 @@ const SignUp = () => {
         // set the user
         setUser(data.user);
 
-        message.success(`Welcome to Social Cards ${data.user.username}!`);
+        message.success(`Welcome to BeautySphere ${data.user.username}!`);
 
-        navigate("/profile", { replace: true });
+        //navigate("/profile", { replace: true });
       }
     } catch (error) {
       console.error(error);

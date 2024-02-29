@@ -54,13 +54,13 @@ const SignIn = () => {
         // set the user
         setUser(data.user);
 
-        message.success(`Bonjour ${data.user.username}!`);
+        message.success(`Welcome back ${data.user.username}!`);
 
         
       }
     } catch (error) {
       console.error(error);
-      setError(error?.message ?? "Oups il y a eu un soucis!");
+      setError(error?.message ?? "There is something not ok!");
     } finally {
       setIsLoading(false);
     }
@@ -118,7 +118,7 @@ const SignIn = () => {
               </Form.Item>
             </Form>
             <Typography.Paragraph className="form_help_text">
-              New to here? <Link to="/signup">Sign Up</Link>
+              New to BeautySphere? <Link to="/signup">Sign Up</Link>
             </Typography.Paragraph>
           </Card>
         </Col>

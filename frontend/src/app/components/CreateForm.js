@@ -206,37 +206,29 @@ export function CreatePostForm() {
     try {
           const formDataImg = new FormData();
           formDataImg.append('files', image);
-          const uploadImageResponse = await axios.post('http://localhost:1337/api/upload', formDataImg, {
+         /* const uploadImageResponse = await axios.post('http://localhost:1337/api/upload', formDataImg, {
             headers: {
               'Content-Type': 'multipart/form-data'
             }
           });
-  
+  */
          
   
             // Récupérez l'URL de l'image téléchargée
-            const imageUrl = uploadImageResponse.data[0].url;
-            console.log("imagUrl",imageUrl);
+            //const imageUrl = uploadImageResponse.data[0].url;
+           // console.log("imagUrl",imageUrl);
       // Créez le post avec les données textuelles
       const formData = {
         data: {
           
             title: title,
             body: body,
-            media: {
-              data: [
-                {
-                  attributes: {
-                    url: "/uploads/thumbnail_Numeriser_73b3042b8c.jpeg"
-                  }
-                }
-              ]
-            }
+           
           
         }
       };
       
-      const response = await axios.post('http://localhost:1337/api/pins?populate=*', formData);
+      const response = await axios.post('http://localhost:1337/api/pins', formData);
       console.log(response);
   
       /*

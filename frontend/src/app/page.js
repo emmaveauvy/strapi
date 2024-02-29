@@ -243,25 +243,19 @@ root.render(
 );*/
 
 "use client"
-import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-import { Col, Layout, Row } from "antd";
-import AppHeader from "./components/Appheader/Appheader";
-import AppRoutes from "./Routes";
+import { Layout } from "antd";
 import { getPins } from './components/Pins.js';
 import PinsList from './views/listPins.js';
 import { CreatePin } from './views/createForm.js';
-import FormAccount from './views/Form.js';
 import React, { useState, useEffect } from 'react';
 import SignUp from './pages/SignUp/SignUp';
 import SignIn from './pages/SignIn/SignIn';
-const { Header, Content } = Layout;
+
 
 export default function App() {
   const [pins, setPins] = useState([]);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
-
+  
   function loadCSS(filename) {
     var file = document.createElement('link');
     file.setAttribute('rel', 'stylesheet');
@@ -287,19 +281,17 @@ export default function App() {
 
 
   return (
-
-
     <BrowserRouter> 
       <Layout>
 
         <SignUp/>
         <SignIn/>
         
-      <CreatePin />
-      <PinsList pins={pins} />
-      </Layout>
+        <CreatePin />
 
+        <PinsList pins={pins} />
+
+      </Layout>
     </BrowserRouter> 
-    
   );
 };

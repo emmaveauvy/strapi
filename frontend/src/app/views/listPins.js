@@ -263,7 +263,7 @@ export default function PinsList() {
     fetchData();
   }, []);
 */
-
+/*VERSION FONCTIONNELLE SANS RECHERCHE
 import React, { useState, useEffect } from 'react';
 import { getPins, getPinsImg } from "../components/Pins";
 import CategoryList from './CategoryList';
@@ -372,6 +372,131 @@ useEffect(() => {
 </ul>
 {selectedPin && <PinPopup pin={selectedPin} onClose={handleClosePopup} />}
 </div>
+    </div>
+  );
+}
+*/
+import React, { useState, useEffect } from 'react';
+import { getPins, getPinsImg } from "../components/Pins";
+import CategoryList from './CategoryList';
+import PinPopup from './PinPopUp';
+
+export default function PinsList() {
+  const [pins, setPins] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedPin, setSelectedPin] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  useEffect(() => {
+    const fetchPins = async () => {
+      try {
+        const pinsData = await getPins();
+        const pinsImgData = await getPinsImg();
+  
+        // Vérifiez si les deux ont des données avant de procéder
+        if (pinsData.data && pinsImgData.data) {
+          // Mappez chaque pin dans pinsData
+          const mergedPins = pinsData.data.map(pin => {
+            /*const idImg=pin.id-1;
+            console.log(idImg);*/
+            // Filtrer les données d'image correspondant à l'ID du pin actuel
+            const pinImageData = pinsImgData.data.filter(pinImg => pinImg.id === pin.id);
+  
+            // Si des données d'image sont trouvées pour le pin actuel
+            if (pinImageData.length > 0) {
+              // Récupérez toutes les URL des images associées à ce pin
+              const imageUrls = pinImageData.map(pinImgData => {
+                if (pinImgData.attributes.media.data && pinImgData.attributes.media.data.length > 0) {
+                  //console.log(`http://127.0.0.1:1337${pinImgData.attributes.media.data[0].attributes.url}`);
+                  return `http://127.0.0.1:1337${pinImgData.attributes.media.data[0].attributes.url}`;
+                } else {
+                  return null; // Ou une valeur par défaut si aucune URL n'est trouvée
+                }
+              });
+    
+              // Retournez le pin avec les URLs des images ajoutées
+              return {
+                ...pin,
+                images: imageUrls
+              };
+            } else {
+              // Si aucune donnée d'image n'est trouvée, retournez simplement le pin
+              return pin;
+            }
+          });
+  
+          // Mettez à jour l'état avec les données fusionnées
+          setPins(mergedPins);
+        } else {
+          console.error("Les données de pinsData ou pinsImgData sont manquantes.");
+        }
+      } catch (error) {
+        console.error('Erreur lors de la récupération des épingles:', error);
+      }
+    };
+
+    fetchPins();
+  }, []);
+
+  const handleSelectCategory = (categoryId) => {
+    setSelectedCategory(categoryId);
+  };
+
+  const handlePinClick = (pin) => {
+    setSelectedPin(pin);
+  };
+
+  const handleClosePopup = () => {
+    setSelectedPin(null);
+  };
+
+  // Filtrer les épingles en fonction de la catégorie
+  const filteredByCategory = selectedCategory ? pins.filter(pin => pin.attributes.categories.data.some(category => category.id === selectedCategory)) : pins;
+
+  // Filtrer les épingles en fonction du terme de recherche
+  const filteredBySearchTerm = searchTerm.trim() === '' ? filteredByCategory : filteredByCategory.filter(pin => {
+    // Vérifier si le terme de recherche est inclus dans le titre, le corps ou les images de l'épingle
+    return pin.attributes.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+           pin.attributes.body.toLowerCase().includes(searchTerm.toLowerCase()) ||
+           (pin.images && pin.images.some(imageUrl => imageUrl.toLowerCase().includes(searchTerm.toLowerCase())));
+  });
+
+  return (
+    <div>
+      <input 
+        type="text" 
+        placeholder="Rechercher..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+      <CategoryList onSelectCategory={handleSelectCategory} />
+      <div className='ctn-btn'>
+        <button className="btn-purple" onClick={() => setSelectedCategory(null)}>Supprimer les filtres</button>
+      </div>
+
+      <div className="ctn-pin">
+        <h1>Pins List</h1>
+        <ul className="pins">
+          {filteredBySearchTerm.length > 0 ? (
+            filteredBySearchTerm.map((pin) => (
+              <li key={pin.id} className='pin' onClick={() => handlePinClick(pin)}>
+                <h3>{pin.attributes.title}</h3>
+                {pin.images && pin.images.map((imageUrl) => (
+          <img key={imageUrl} src={imageUrl} alt={pin.attributes.title} />
+        ))}
+        <ul>
+          {pin.attributes.categories.data.map((category) => (
+            <li className="pinCategory" key={category.id}>{category.attributes.name}</li>
+          ))}
+        </ul>
+              </li>
+            ))
+          ) : (
+            <p className='no-pin'>Aucun pin ne correspond à la recherche.</p>
+          )}
+        </ul>
+        {selectedPin && <PinPopup pin={selectedPin} onClose={handleClosePopup} />}
+      </div>
     </div>
   );
 }
