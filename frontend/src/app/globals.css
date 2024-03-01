@@ -22,8 +22,9 @@ a {
 }
 
 h2{
-  padding-left: 1rem;
+  padding-left: 2rem;
   font-family: 'Protest Riot', sans-serif;
+  color: #6a0dad;
 
 }
 
@@ -61,8 +62,26 @@ body {
   margin-right: 1rem;
 
 }
+.ant-form-item-control-input-content{
+  text-align: right;
+}
+
+.login_submit_btn{
+  background-color: #6a0dad;
+  color: #fff;
+
+}
 
 /* Formulaires */
+.signForm{
+background-color: #fff;
+border-radius: 10px;
+
+margin-bottom: 20px;
+width: 100vw;
+}
+
+.btn
 form {
   background-color: #fff;
   border-radius: 10px;
@@ -105,12 +124,41 @@ form select {
   display: grid;
   grid-template-columns: 1fr; 
   gap: 20px; 
+  
+}
+
+form{
+  background-color: #fff;
+  
 }
 
 .sign-in{
   margin-top: 3rem;
 }
 
+.ant-card-head-title{
+  font-family: 'Protest Riot', sans-serif;
+  color: #6a0dad;
+  font-size: 1.5rem;
+
+}
+:where(.css-dev-only-do-not-override-1k979oh).ant-card .ant-card-head{
+  border-bottom: none;
+}
+
+.createFrom{
+  background-color: #fff;
+  padding-top: 2rem
+
+}
+
+.createFrom h2{
+  font-size: 1.5rem;
+}
+
+form{
+  padding: 2rem;
+}
 /* Media query pour les écrans plus larges que 768px */
 @media (min-width: 768px) {
   .form-container {

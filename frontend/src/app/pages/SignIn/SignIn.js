@@ -70,7 +70,7 @@ const SignIn = () => {
     <Fragment>
       <Row align="middle">
         <Col >
-          <Card title="SignIn">
+          <Card title="Sign In" className="signForm">
             {error ? (
               <Alert
                 className="alert_error"
@@ -85,6 +85,7 @@ const SignIn = () => {
               layout="vertical"
               onFinish={onFinish}
               autoComplete="off"
+              
             >
               <Form.Item
                 label="Email"
@@ -96,7 +97,7 @@ const SignIn = () => {
                   },
                 ]}
               >
-                <Input placeholder="Email address" />
+                <Input placeholder="Email address" className="mail" />
               </Form.Item>
 
               <Form.Item
@@ -112,6 +113,7 @@ const SignIn = () => {
                   type="primary"
                   htmlType="submit"
                   className="login_submit_btn"
+                  
                 >
                   Login {isLoading && <Spin size="small" />}
                 </Button>

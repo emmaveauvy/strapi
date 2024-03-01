@@ -66,7 +66,7 @@ const SignUp = () => {
     <Fragment>
       <Row align="middle">
         <Col >
-          <Card title="SignUp">
+          <Card title="Sign Up" className="signForm">
             {error ? (
               <Alert
                 className="alert_error"

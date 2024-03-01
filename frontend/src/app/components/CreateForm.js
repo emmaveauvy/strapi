@@ -304,7 +304,7 @@ export function CreatePostForm() {
 
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} title="Add a new pin">
       <div>
         <label htmlFor="title">Titre:</label>
         <input type="text" id="title" name="title" value={title} onChange={(e) => setTitle(e.target.value)} required />

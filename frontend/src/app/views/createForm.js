@@ -5,9 +5,9 @@ import React, { useState, useEffect } from 'react';
 
 export function CreatePin() {
   return (
-    <main>
+    <div className="createFrom">
         <h2 className="text-primary text-center">Add a new pin</h2>
         <CreatePostForm/>
-    </main>
+    </div>
   )
 }
