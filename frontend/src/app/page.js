@@ -255,6 +255,19 @@ import SignIn from './pages/SignIn/SignIn';
 
 export default function App() {
   const [pins, setPins] = useState([]);
+  const [showSignUp, setShowSignUp] = useState(false);
+  const [showSignIn, setShowSignIn] = useState(false);
+
+  const handleSignUpClick = () => {
+    setShowSignUp(true);
+    setShowSignIn(false);
+  };
+
+  const handleSignInClick = () => {
+    setShowSignUp(false);
+    setShowSignIn(true);
+  };
+
   
   function loadCSS(filename) {
     var file = document.createElement('link');
@@ -284,9 +297,36 @@ export default function App() {
     <BrowserRouter> 
       <Layout>
 
-        <SignUp/>
-        <SignIn/>
-        
+      <div className="signForm">
+              <div>
+                {showSignUp ? (
+                  <SignUp />
+                ) : showSignIn ? (
+                  <SignIn />
+                ) : (
+                  <div className="btn-sign">
+                  <button className="btn-purple" type="primary" onClick={handleSignUpClick}>
+                    New to BeautySphere ? Sign Up
+                  </button>
+                  </div>
+                )}
+              </div>
+              {showSignUp ? (
+ <div className="btn-sign">
+                <button className="btn-purple" type="link" onClick={handleSignInClick}>
+                  Already a part of BeautySphere ? Sign In
+                </button>
+                </div>
+              ) : null}
+               {showSignIn ? (
+                 <div className="btn-sign">
+                <button className="btn-purple" type="link" onClick={handleSignUpClick}>
+                  New to BeautySphere ? Sign Up
+                 
+                </button>
+                </div>
+              ) : null}
+            </div>
         <CreatePin />
 
         <PinsList pins={pins} />

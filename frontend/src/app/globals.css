@@ -24,9 +24,11 @@ a {
 h2{
   padding-left: 2rem;
   font-family: 'Protest Riot', sans-serif;
-  color: #6a0dad;
+  color: #9966cc;
 
 }
+
+
 
 .pinCategory{
   font-style: italic;
@@ -53,7 +55,7 @@ body {
 }
 
 .btn-purple {
-  background-color: #6a0dad;
+  background-color: #9966cc;
   color: #fff;
   padding: 10px 20px;
   border: none;
@@ -62,12 +64,18 @@ body {
   margin-right: 1rem;
 
 }
+
+.btn-sign{
+  width: 100%;
+  text-align: center;
+  padding-top:4rem;
+}
 .ant-form-item-control-input-content{
   text-align: right;
 }
 
 .login_submit_btn{
-  background-color: #6a0dad;
+  background-color: #9966cc;
   color: #fff;
 
 }
@@ -76,8 +84,6 @@ body {
 .signForm{
 background-color: #fff;
 border-radius: 10px;
-
-margin-bottom: 20px;
 width: 100vw;
 }
 
@@ -102,8 +108,8 @@ input[type="file"] {
 
 input[type="file"]::file-selector-button {
   background-color: #ffff; 
-  color: #6a0dad;
-  border: 2px solid #6a0dad;
+  color: #9966cc;
+  border: 2px solid #9966cc;
   padding: 10px; 
   border-radius: 5px; 
   cursor: pointer; 
@@ -138,7 +144,7 @@ form{
 
 .ant-card-head-title{
   font-family: 'Protest Riot', sans-serif;
-  color: #6a0dad;
+  color: #9966cc;
   font-size: 1.5rem;
 
 }
@@ -167,10 +173,39 @@ form{
 }
 
 
+/*Recherches*/
+.search-bar-ctn{
+  width:100%;
+  display: flex;
+  justify-content: center;
+}
+
+.search-bar {
+  position: relative;
+  width: 300px; /* Ajustez la largeur selon vos besoins */
+  height: 40px; /* Ajustez la hauteur selon vos besoins */
+  border: 2px solid #9966cc; /* Définir la bordure en violet */
+  border-radius: 5px; /* Pour arrondir les coins */
+  background-color: white; /* Couleur de fond */
+  overflow: hidden; /* Pour masquer le dépassement du contenu */
+ padding-left: 1em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+
+}
+
+
+/* Style de l'entrée de texte */
+.search-bar input[type="text"] {
+
+  border: none; /* Supprimez la bordure du champ de saisie */
+  font-size: 16px; /* Taille de police */
+  outline: none; /* Supprimez la bordure de focus */
+}
 
 /* Titre "Catégories" */
 h1 {
-  color: #6a0dad;
+  color: #9966cc;
   padding-left: 1rem;
   font-family: 'Protest Riot', sans-serif;
 }
@@ -185,8 +220,8 @@ h1 {
 }
 
 .categories .category {
-  border: 2px solid #6a0dad;
-  border-radius: 1rem;
+  border: 2px solid #9966cc;
+  border-radius: 5px;
   padding: 0.5rem;
   display: inline-block;
   margin-right: 0.4rem;
@@ -199,13 +234,19 @@ h1 {
 }
 
 .categories .category.active {
-  background-color: #6a0dad; 
+  background-color: #9966cc; 
   color: #fff;
 }
 
+
+
 /* Liste de pins */
 .ctn-pin{
-  margin-top: 3rem;
+  margin-top: 2rem;
+}
+
+.ctn-pin h1{
+  padding-bottom: 1rem;
 }
 .pins {
   column-count: 3; 
@@ -224,9 +265,10 @@ h1 {
 }
 
 .pin h3 {
-  color: #6a0dad;
-  font-size: 18px;
+  color: #9966cc;
+  font-size: 1rem;
   margin-bottom: 10px;
+  font-family: 'Protest Riot', sans-serif;
 }
 
 .pin img {
@@ -243,7 +285,7 @@ h1 {
 
 .pin .categories li {
   background-color: #dabfff;
-  border: 1px solid #6a0dad;
+  border: 1px solid #9966cc;
   border-radius: 5px;
   padding: 5px 10px;
   display: inline-block;
@@ -291,11 +333,11 @@ h1 {
   right: 10px;
   cursor: pointer;
   font-size: 24px;
-  color: #888;
+  color: #d3d3d3;
 }
 
 .close:hover {
-  color: #555;
+  color: #f9f9f9;
 }
 
 .popup-content img {

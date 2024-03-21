@@ -119,9 +119,7 @@ const SignIn = () => {
                 </Button>
               </Form.Item>
             </Form>
-            <Typography.Paragraph className="form_help_text">
-              New to BeautySphere? <Link to="/signup">Sign Up</Link>
-            </Typography.Paragraph>
+           
           </Card>
         </Col>
       </Row>

@@ -463,15 +463,19 @@ export default function PinsList() {
 
   return (
     <div>
-      <input 
+      <div className="search-bar-ctn">
+      <input className='search-bar'
         type="text" 
-        placeholder="Rechercher..."
+        placeholder="Search..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
+     
+      
+      </div>
       <CategoryList onSelectCategory={handleSelectCategory} />
       <div className='ctn-btn'>
-        <button className="btn-purple" onClick={() => setSelectedCategory(null)}>Supprimer les filtres</button>
+        <button className="btn-purple" onClick={() => setSelectedCategory(null)}>Delete filters</button>
       </div>
 
       <div className="ctn-pin">
@@ -480,10 +484,10 @@ export default function PinsList() {
           {filteredBySearchTerm.length > 0 ? (
             filteredBySearchTerm.map((pin) => (
               <li key={pin.id} className='pin' onClick={() => handlePinClick(pin)}>
-                <h3>{pin.attributes.title}</h3>
-                {pin.images && pin.images.map((imageUrl) => (
+                <h3>{/*pin.attributes.title*/}</h3>
+                {/*pin.images && pin.images.map((imageUrl) => (
           <img key={imageUrl} src={imageUrl} alt={pin.attributes.title} />
-        ))}
+                ))*/}
         <ul>
           {pin.attributes.categories.data.map((category) => (
             <li className="pinCategory" key={category.id}>{category.attributes.name}</li>

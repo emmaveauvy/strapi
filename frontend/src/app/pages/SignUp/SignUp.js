@@ -26,6 +26,7 @@ const SignUp = () => {
   const { setUser } = useAuthContext();
 
   const [isLoading, setIsLoading] = useState(false);
+  
 
   const [error, setError] = useState("");
 
@@ -125,9 +126,7 @@ const SignUp = () => {
                 </Button>
               </Form.Item>
             </Form>
-            <Typography.Paragraph className="form_help_text">
-              Already have an account? <Link to="/signin">Sign In</Link>
-            </Typography.Paragraph>
+           
           </Card>
         </Col>
       </Row>

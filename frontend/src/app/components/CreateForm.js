@@ -306,11 +306,11 @@ export function CreatePostForm() {
   return (
     <form onSubmit={handleSubmit} title="Add a new pin">
       <div>
-        <label htmlFor="title">Titre:</label>
+        <label htmlFor="title">Title:</label>
         <input type="text" id="title" name="title" value={title} onChange={(e) => setTitle(e.target.value)} required />
       </div>
       <div>
-        <label htmlFor="body">Contenu:</label>
+        <label htmlFor="body">Content:</label>
         <textarea id="body" name="body" value={body} onChange={(e) => setBody(e.target.value)} required></textarea>
       </div>
       <div>
@@ -319,7 +319,7 @@ export function CreatePostForm() {
       </div>
       <div className="ctn-btn">
       <button className="btn-purple" type="submit" disabled={isLoading}>
-        {isLoading ? 'En cours...' : 'Créer le post'}
+        {isLoading ? 'Loading...' : 'Create the post'}
       </button>
       </div>
       {error && <p>{error}</p>}
